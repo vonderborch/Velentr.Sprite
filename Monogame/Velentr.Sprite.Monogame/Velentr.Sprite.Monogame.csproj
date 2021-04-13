@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Velentr.Input.Monogame</AssemblyName>
+    <RootNamespace>Velentr.Input</RootNamespace>
+    <Authors>Christian Webber</Authors>
+    <Company>Christian Webber</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/vonderborch/Velentr.Sprite</RepositoryUrl>
+    <PackageTags>Monogame, Textures, Texture Atlas, Atlas, Sprite</PackageTags>
+    <Description>A handy growing library of sprite/texture enhancements.</Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <PackageProjectUrl>https://github.com/vonderborch/Velentr.Sprite</PackageProjectUrl>
+    <PackageId>Velentr.Sprite.Monogame</PackageId>
+    <Product>Velentr.Sprite.Monogame</Product>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;MONOGAME</DefineConstants>
+    <OutputPath>C:\Users\ricky\OneDrive\Projects\repos\Velentr\Velentr.Input\release\Monogame\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>C:\Users\ricky\OneDrive\Projects\repos\Velentr\Velentr.Textures\release\Monogame\</OutputPath>
+    <DefineConstants>TRACE;MONOGAME</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\MathHelpers.cs" Link="Helpers\MathHelpers.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\TimeHelpers.cs" Link="Helpers\TimeHelpers.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawAtlasExtensions.cs" Link="Textures\DrawAtlasExtensions.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawManagerExtensions.cs" Link="Textures\DrawManagerExtensions.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawTextureExtensions.cs" Link="Textures\DrawTextureExtensions.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\Texture.cs" Link="Textures\Texture.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\TextureAtlas.cs" Link="Textures\TextureAtlas.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\TextureLoadInfo.cs" Link="Textures\TextureLoadInfo.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\TextureManager.cs" Link="Textures\TextureManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.23.3" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Speech" Version="5.0.0" />
+    <PackageReference Include="Velentr.Collections" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Textures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>
