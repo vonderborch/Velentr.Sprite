@@ -20,8 +20,8 @@
     <None Remove="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Core\Velentr.Textures.Core.DevEnv\Game1.cs" Link="Game1.cs" />
-    <Compile Include="..\..\Core\Velentr.Textures.Core.DevEnv\Program.cs" Link="Program.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core.DevEnv\Game1.cs" Link="Game1.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core.DevEnv\Program.cs" Link="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PlayfairDisplayRegular-ywLOY.ttf">
@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FNA_Repo\FNA.csproj" />
-    <ProjectReference Include="..\Velentr.Textures.FNA\Velentr.Textures.FNA.csproj" />
+    <ProjectReference Include="..\Velentr.Sprite.FNA\Velentr.Sprite.FNA.csproj" />
   </ItemGroup>
   <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />

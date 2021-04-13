@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Velentr.Sprite</RootNamespace>
+    <AssemblyName>Velentr.Sprite</AssemblyName>
+    <Version>1.0.0</Version>
+    <PackageId>Velentr.Sprite</PackageId>
+    <Authors>Velentr.Sprite</Authors>
+    <Company>Velentr.Sprite</Company>
+    <Product>Velentr.Sprite</Product>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;MONOGAME</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.23.3" />
+    <PackageReference Include="Magick.NET.SystemDrawing" Version="2.0.14" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.Speech" Version="5.0.0" />
+    <PackageReference Include="Velentr.Collections" Version="1.0.1" />
+  </ItemGroup>
+</Project>

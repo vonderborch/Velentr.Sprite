@@ -14,6 +14,10 @@
     <None Remove="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Core\Velentr.Sprite.Core.DevEnv\Game1.cs" Link="Game1.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core.DevEnv\Program.cs" Link="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Icon.ico" />
     <EmbeddedResource Include="Icon.bmp" />
   </ItemGroup>
@@ -29,6 +33,6 @@
     <PackageReference Include="Velentr.Font.Monogame" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Velentr.Textures.Core\Velentr.Textures.Core.csproj" />
+    <ProjectReference Include="..\Velentr.Sprite.Monogame\Velentr.Sprite.Monogame.csproj" />
   </ItemGroup>
 </Project>
