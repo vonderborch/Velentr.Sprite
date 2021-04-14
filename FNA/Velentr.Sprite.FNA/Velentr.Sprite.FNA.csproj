@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;FNA</DefineConstants>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <OutputPath>C:\Users\ricky\OneDrive\Projects\repos\Velentr\Velentr.Input\release\FNA\</OutputPath>
+    <OutputPath></OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DefineConstants>TRACE;FNA</DefineConstants>
@@ -28,7 +28,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>TRACE;FNA</DefineConstants>
-    <OutputPath>C:\Users\ricky\OneDrive\Projects\repos\Velentr\Velentr.Textures\release\FNA\</OutputPath>
+    <OutputPath>..\..\release\FNA\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\MathHelpers.cs" Link="Helpers\MathHelpers.cs" />
