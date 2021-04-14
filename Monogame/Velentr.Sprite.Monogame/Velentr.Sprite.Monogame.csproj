@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Velentr.Input.Monogame</AssemblyName>
-    <RootNamespace>Velentr.Input</RootNamespace>
+    <AssemblyName>Velentr.Sprite.Monogame</AssemblyName>
+    <RootNamespace>Velentr.Sprite</RootNamespace>
     <Authors>Christian Webber</Authors>
     <Company>Christian Webber</Company>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -10,7 +10,7 @@
     <PackageTags>Monogame, Textures, Texture Atlas, Atlas, Sprite</PackageTags>
     <Description>A handy growing library of sprite/texture enhancements.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <PackageProjectUrl>https://github.com/vonderborch/Velentr.Sprite</PackageProjectUrl>
     <PackageId>Velentr.Sprite.Monogame</PackageId>
     <Product>Velentr.Sprite.Monogame</Product>
@@ -39,8 +39,6 @@
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="System.Speech" Version="5.0.0" />
-    <PackageReference Include="Velentr.Collections" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
