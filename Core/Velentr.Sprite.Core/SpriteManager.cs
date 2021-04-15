@@ -6,13 +6,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Velentr.Sprite.Helpers;
+using Velentr.Sprite.Textures;
+using Texture = Velentr.Sprite.Textures.Texture;
 
-namespace Velentr.Sprite.Textures
+namespace Velentr.Sprite
 {
     /// <summary>   Manager for textures. </summary>
     ///
     /// <seealso cref="IDisposable"/>
-    public class TextureManager : IDisposable
+    public class SpriteManager : IDisposable
     {
         /// <summary>   (Immutable) the default reach texture size. </summary>
         public const int DEFAULT_REACH_TEXTURE_SIZE = 2048;
@@ -40,7 +42,7 @@ namespace Velentr.Sprite.Textures
         /// <param name="surfaceFormat">                                    (Optional) The surface format. Defaults to SurfaceFormat.Color.</param>
         /// <param name="autoTextureAtlasBalancingEnabled">                 (Optional) Whether texture atlas auto balancing is enabled. Defaults to false. </param>
         /// <param name="autoTextureAtlasBalancingIntervalMilliseconds">    (Optional) The time in milliseconds between texture auto-balancing attempts. Defaults to 300000 (five minutes). </param>
-        public TextureManager(GraphicsDevice graphicsDevice, int? maxAtlasWidth = null, int? maxAtlasHeight = null, SurfaceFormat? surfaceFormat = null, bool autoTextureAtlasBalancingEnabled = false, uint autoTextureAtlasBalancingIntervalMilliseconds = 300000)
+        public SpriteManager(GraphicsDevice graphicsDevice, int? maxAtlasWidth = null, int? maxAtlasHeight = null, SurfaceFormat? surfaceFormat = null, bool autoTextureAtlasBalancingEnabled = false, uint autoTextureAtlasBalancingIntervalMilliseconds = 300000)
         {
             GraphicsDevice = graphicsDevice;
 

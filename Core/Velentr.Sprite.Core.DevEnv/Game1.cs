@@ -14,7 +14,7 @@ namespace Velentr.Input.DevEnv
         private SpriteBatch _spriteBatch;
 
         private Random r;
-        private TextureManager manager;
+        private SpriteManager manager;
 
         public Game1()
         {
@@ -33,7 +33,7 @@ namespace Velentr.Input.DevEnv
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            manager = new TextureManager(GraphicsDevice);
+            manager = new SpriteManager(GraphicsDevice);
             manager.AutoTextureAtlasBalancingEnabled = true;
             manager.AutoTextureAtlasBalancingIntervalMilliseconds = 1000;
 
