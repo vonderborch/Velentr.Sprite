@@ -9,11 +9,11 @@ namespace Velentr.Sprite.Sprites
 
         private Vector2 _size;
 
-        protected Sprite(SpriteManager manager, string name, Vector2 size) : this(manager, name, Vector2.Zero, Color.White, size, 0f, Vector2.Zero, SpriteEffects.None, 0f)
+        protected Sprite(TextureManager manager, string name, Vector2 size) : this(manager, name, Vector2.Zero, Color.White, size, 0f, Vector2.Zero, SpriteEffects.None, 0f)
         {
         }
 
-        protected Sprite(SpriteManager manager, string name, Vector2 position, Color color, Vector2 size, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
+        protected Sprite(TextureManager manager, string name, Vector2 position, Color color, Vector2 size, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth)
         {
             Manager = manager;
             Name = name;
@@ -29,7 +29,7 @@ namespace Velentr.Sprite.Sprites
 
         public string Name { get; set; }
 
-        public SpriteManager Manager { get; set; }
+        public TextureManager Manager { get; set; }
 
         protected abstract Textures.Texture Texture { get; }
 

@@ -28,7 +28,7 @@ namespace Velentr.Sprite.Textures
         /// <param name="width">            The width. </param>
         /// <param name="height">           The height. </param>
         /// <param name="surfaceFormat">    The surface format. </param>
-        public TextureAtlas(SpriteManager manager, int width, int height, SurfaceFormat surfaceFormat)
+        public TextureAtlas(TextureManager manager, int width, int height, SurfaceFormat surfaceFormat)
         {
             Manager = manager;
             TextureAtlasBoundaries = new Rectangle(0, 0, width, height);
@@ -45,7 +45,7 @@ namespace Velentr.Sprite.Textures
         /// <summary>   Gets the manager. </summary>
         ///
         /// <value> The manager. </value>
-        public SpriteManager Manager { get; }
+        public TextureManager Manager { get; }
 
         /// <summary>   Gets the texture atlas boundaries. </summary>
         ///

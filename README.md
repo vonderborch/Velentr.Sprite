@@ -9,9 +9,9 @@ There are nuget packages available for Monogame and FNA.
 
 
 # Features
-- Sprite/Texture Management
+- Texture Manager: handles creating texture atlases automatically and stores textures
 - Auto texture atlas creation: handle loading textures into texture atlases automatically
-  - includes functionality to auto-rebalance texture atlases based on usage and size of textures
+  - includes functionality to auto-rebalance texture atlases based on usage and size of textures (optional, disabled by default)
 - Sprite System
   - Simple Sprites: simple image/texture with positioning information
   - Animated Sprites: sprite using multiple sub-images to replicate an animation

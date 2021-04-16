@@ -20,14 +20,14 @@ namespace Velentr.Sprite.Sprites
 
         private Vector2 _baseSize;
 
-        public CompositeSprite(SpriteManager manager, string name, Vector2 size, params Sprite[] sprites) : base(manager, name, size)
+        public CompositeSprite(TextureManager manager, string name, Vector2 size, params Sprite[] sprites) : base(manager, name, size)
         {
             Sprites = sprites.ToList();
             _lastSprites = new List<string>();
             _baseSize = size;
         }
 
-        public CompositeSprite(SpriteManager manager, string name, Vector2 position, Color color, Vector2 size, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, params Sprite[] sprites) : base(manager, name, position, color, size, rotation, origin, effects, layerDepth)
+        public CompositeSprite(TextureManager manager, string name, Vector2 position, Color color, Vector2 size, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, params Sprite[] sprites) : base(manager, name, position, color, size, rotation, origin, effects, layerDepth)
         {
             Sprites = sprites.ToList();
             _lastSprites = new List<string>();

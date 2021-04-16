@@ -232,7 +232,7 @@ namespace Velentr.Sprite.Textures
                 }
             }
 
-            return this.Name.CompareTo(other.Name);
+            return string.Compare(Name, other.Name, StringComparison.Ordinal);
         }
     }
 }

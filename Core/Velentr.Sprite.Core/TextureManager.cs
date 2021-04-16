@@ -16,7 +16,7 @@ namespace Velentr.Sprite
     /// <summary>   Manager for textures. </summary>
     ///
     /// <seealso cref="IDisposable"/>
-    public class SpriteManager : IDisposable
+    public class TextureManager : IDisposable
     {
         /// <summary>   (Immutable) the default reach texture size. </summary>
         public const int DEFAULT_REACH_TEXTURE_SIZE = 2048;
@@ -47,7 +47,7 @@ namespace Velentr.Sprite
         /// <param name="surfaceFormat">                                    (Optional) The surface format. Defaults to SurfaceFormat.Color.</param>
         /// <param name="autoTextureAtlasBalancingEnabled">                 (Optional) Whether texture atlas auto balancing is enabled. Defaults to false. </param>
         /// <param name="autoTextureAtlasBalancingIntervalMilliseconds">    (Optional) The time in milliseconds between texture auto-balancing attempts. Defaults to 300000 (five minutes). </param>
-        public SpriteManager(GraphicsDevice graphicsDevice, Game game = null, int? maxAtlasWidth = null, int? maxAtlasHeight = null, SurfaceFormat? surfaceFormat = null, bool autoTextureAtlasBalancingEnabled = false, uint autoTextureAtlasBalancingIntervalMilliseconds = 300000)
+        public TextureManager(GraphicsDevice graphicsDevice, Game game = null, int? maxAtlasWidth = null, int? maxAtlasHeight = null, SurfaceFormat? surfaceFormat = null, bool autoTextureAtlasBalancingEnabled = false, uint autoTextureAtlasBalancingIntervalMilliseconds = 300000)
         {
             Game = game;
             GraphicsDevice = graphicsDevice;
@@ -344,7 +344,10 @@ namespace Velentr.Sprite
         public void Update(GameTime gameTime)
         {
             // re-balance texture atlases if required
-            if (AutoTextureAtlasBalancingEnabled && TimeHelpers.ElapsedMilliSeconds(_lastBalancingTime, gameTime.TotalGameTime) > AutoTextureAtlasBalancingIntervalMilliseconds)
+            TimeInMillisecondsSinceLastReBalance = !AutoTextureAtlasBalancingEnabled
+                ? 0
+                : TimeHelpers.ElapsedMilliSeconds(_lastBalancingTime, gameTime.TotalGameTime);
+            if (AutoTextureAtlasBalancingEnabled && TimeInMillisecondsSinceLastReBalance > AutoTextureAtlasBalancingIntervalMilliseconds)
             {
                 BalanceTextureAtlases();
                 _lastBalancingTime = gameTime.TotalGameTime;
@@ -356,6 +359,10 @@ namespace Velentr.Sprite
                 sprite.Value.Update(gameTime);
             }
         }
+
+        public uint TimeInMillisecondsSinceLastReBalance { get; private set; }
+
+        public uint TimeInMillisecondsUntilLastReBalance => AutoTextureAtlasBalancingIntervalMilliseconds - TimeInMillisecondsSinceLastReBalance;
 
         public void RegisterSpriteForUpdates(Sprites.Sprite sprite)
         {
@@ -395,6 +402,7 @@ namespace Velentr.Sprite
             if (textures.Count == _lastTextureBalancingOrder.Count)
             {
                 alreadyBalanced = true;
+
                 for (var i = 0; i < textures.Count; i++)
                 {
                     if (textures[i].Name != _lastTextureBalancingOrder[i])
@@ -411,9 +419,11 @@ namespace Velentr.Sprite
 
             // Re-balance the texture atlases based on the draw usage order...
             var newAtlases = new List<TextureAtlas>(_atlases.Count);
+            _lastTextureBalancingOrder = new List<string>(_textures.Count);
             for (var i = 0; i < textures.Count; i++)
             {
                 newAtlases = InternalLoadTexture(_textures[textures[i].Name], newAtlases);
+                _lastTextureBalancingOrder.Add(textures[i].Name);
             }
 
             var oldAtlases = _atlases;

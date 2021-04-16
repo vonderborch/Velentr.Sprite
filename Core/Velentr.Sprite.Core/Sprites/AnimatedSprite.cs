@@ -15,7 +15,7 @@ namespace Velentr.Sprite.Sprites
 
         private TimeSpan _currentFrameStartTime = TimeSpan.Zero;
 
-        public AnimatedSprite(SpriteManager manager, string name, Vector2 size, params Animation[] animations) : base(manager, name, size)
+        public AnimatedSprite(TextureManager manager, string name, Vector2 size, params Animation[] animations) : base(manager, name, size)
         {
             _currentAnimation = animations[0].Name;
             CurrentAnimationName = _currentAnimation;
@@ -23,7 +23,7 @@ namespace Velentr.Sprite.Sprites
             AnimationOrder = animations.Select(x => x.Name).ToList();
         }
 
-        public AnimatedSprite(SpriteManager manager, string name, Vector2 position, Color color, Vector2 size, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, params Animation[] animations) : base(manager, name, position, color, size, rotation, origin, effects, layerDepth)
+        public AnimatedSprite(TextureManager manager, string name, Vector2 position, Color color, Vector2 size, float rotation, Vector2 origin, SpriteEffects effects, float layerDepth, params Animation[] animations) : base(manager, name, position, color, size, rotation, origin, effects, layerDepth)
         {
             _currentAnimation = animations[0].Name;
             CurrentAnimationName = _currentAnimation;

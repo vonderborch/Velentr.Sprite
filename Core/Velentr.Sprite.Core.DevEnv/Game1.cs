@@ -35,7 +35,7 @@ namespace Velentr.Sprite.Core.DevEnv
         private SpriteBatch _spriteBatch;
 
         private Random r;
-        private SpriteManager manager;
+        private TextureManager manager;
 
         private AnimatedSprite animatedSprite1;
         private AnimatedSprite animatedSprite2;
@@ -51,6 +51,7 @@ namespace Velentr.Sprite.Core.DevEnv
 
         private FontManager fontManager;
         private Font.Font font;
+        private Font.Font font2;
 
         private TimeSpan lastMovingSpriteUpdate;
 
@@ -79,16 +80,20 @@ namespace Velentr.Sprite.Core.DevEnv
 
             fontManager = new FontManager(GraphicsDevice);
             font = fontManager.GetFont("Content\\PlayfairDisplayRegular-ywLOY.ttf", 32);
+            font2 = fontManager.GetFont("Content\\PlayfairDisplayRegular-ywLOY.ttf", 16);
 
 
 
             //// create and configure our sprite manager
-            manager = new SpriteManager(GraphicsDevice);
-            manager.AutoTextureAtlasBalancingEnabled = false;
+            manager = new TextureManager(GraphicsDevice);
             manager.AutoTextureAtlasBalancingIntervalMilliseconds = 5000;
 
             //// register all of the textures we'll be using
             var animationSize = new Point(400, 450);
+            var hullSize = new Point(288, 192);
+            var hullSizeVector = new Vector2(hullSize.X, hullSize.Y);
+            var tireSize = new Point(45, 45);
+            var tireSizeVector = new Vector2(tireSize.X, tireSize.Y);
             var textures = new List<(string, Point?, string?)>()
             {
                 ("TextureAtlasTesting\\11-6.jpg", ChooseRandomSize(), null),
@@ -105,12 +110,12 @@ namespace Velentr.Sprite.Core.DevEnv
                 ("AnimationTesting\\woman-silhouette-walk-cycle-vector_4.jpg", animationSize, "woman4"),
                 ("AnimationTesting\\woman-silhouette-walk-cycle-vector_5.jpg", animationSize, "woman5"),
                 ("AnimationTesting\\woman-silhouette-walk-cycle-vector_6.jpg", animationSize, "woman6"),
-                ("SpriteTesting\\spr_sportscar_0.png", new Point(288, 192), "static_car"),
-                ("CompositeSpriteTesting\\spr_sportscar_0_hull.png", new Point(288, 192), "car_hull"),
-                ("CompositeSpriteTesting\\spr_sportscar_0_tire.png", new Point(45, 45), "car_tire"),
-                ("CompositeSpriteTesting\\spr_sportscar_0_tire_2.png", new Point(45, 45), "car_tire2"),
-                ("CompositeSpriteTesting\\spr_sportscar_0_tire_3.png", new Point(45, 45), "car_tire3"),
-                ("CompositeSpriteTesting\\spr_sportscar_0_tire_4.png", new Point(45, 45), "car_tire4")
+                ("SpriteTesting\\spr_sportscar_0.png", hullSize, "static_car"),
+                ("CompositeSpriteTesting\\spr_sportscar_0_hull.png", hullSize, "car_hull"),
+                ("CompositeSpriteTesting\\spr_sportscar_0_tire.png", tireSize, "car_tire"),
+                ("CompositeSpriteTesting\\spr_sportscar_0_tire_2.png", tireSize, "car_tire2"),
+                ("CompositeSpriteTesting\\spr_sportscar_0_tire_3.png", tireSize, "car_tire3"),
+                ("CompositeSpriteTesting\\spr_sportscar_0_tire_4.png", tireSize, "car_tire4")
             };
             var texturesLoadInfos = new List<TextureLoadInfo>();
             for (var i = 0; i < textures.Count; i++)
@@ -122,25 +127,27 @@ namespace Velentr.Sprite.Core.DevEnv
             //// create sprites
 
             // Simple Sprites
-            sprite1 = new SimpleSprite(manager, "static_car1", "static_car", new Vector2(288, 192));
-            sprite2 = new SimpleSprite(manager, "static_car2", "static_car", new Vector2(288, 192));
+            sprite1 = new SimpleSprite(manager, "static_car1", "static_car", hullSizeVector);
+            sprite2 = new SimpleSprite(manager, "static_car2", "static_car", hullSizeVector);
 
             // Composite Sprites
+            var tire1Location = new Vector2(45, 92);
+            var tire2Location = new Vector2(213, 92);
             compositeSprite1 = new CompositeSprite(
                 manager,
                 "car_1",
-                new Vector2(288, 192),
-                new SimpleSprite(manager, "hull", "car_hull", new Vector2(288, 192)),
-                new SimpleSprite(manager, "tire1", "car_tire", new Vector2(42, 92), Color.White, new Vector2(45, 45), 0f, Vector2.Zero, SpriteEffects.None, 0f),
-                new SimpleSprite(manager, "tire2", "car_tire", new Vector2(213, 92), Color.White, new Vector2(45, 45), 0f, Vector2.Zero, SpriteEffects.None, 0f)
+                hullSizeVector,
+                new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+                new SimpleSprite(manager, "tire1", "car_tire", tire1Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f),
+                new SimpleSprite(manager, "tire2", "car_tire", tire2Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f)
             );
             compositeSprite2 = new CompositeSprite(
                 manager,
                 "car_2",
-                new Vector2(288, 192),
-                new SimpleSprite(manager, "hull", "car_hull", new Vector2(288, 192)),
-                new SimpleSprite(manager, "tire1", "car_tire", new Vector2(42, 92), Color.White, new Vector2(45, 45), 0f, Vector2.Zero, SpriteEffects.None, 0f),
-                new SimpleSprite(manager, "tire2", "car_tire", new Vector2(213, 92), Color.White, new Vector2(45, 45), 0f, Vector2.Zero, SpriteEffects.None, 0f)
+                hullSizeVector,
+                new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+                new SimpleSprite(manager, "tire1", "car_tire", tire1Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f),
+                new SimpleSprite(manager, "tire2", "car_tire", tire2Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f)
             );
 
             // Composite AnimatedSprites
@@ -158,14 +165,14 @@ namespace Velentr.Sprite.Core.DevEnv
             compositeAnimatedSprite1 = new CompositeSprite(
                 manager,
                 "a_car_1",
-                new Vector2(288, 192),
-                new SimpleSprite(manager, "hull", "car_hull", new Vector2(288, 192)),
+                hullSizeVector,
+                new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
                 new AnimatedSprite(
                     manager,
                     "tire1",
-                    new Vector2(42, 92),
+                    tire1Location,
                     Color.White,
-                    new Vector2(45, 45),
+                    tireSizeVector,
                     0f,
                     Vector2.Zero,
                     SpriteEffects.None,
@@ -175,9 +182,9 @@ namespace Velentr.Sprite.Core.DevEnv
                 new AnimatedSprite(
                     manager,
                     "tire1",
-                    new Vector2(213, 92),
+                    tire2Location,
                     Color.White,
-                    new Vector2(45, 45),
+                    tireSizeVector,
                     0f,
                     Vector2.Zero,
                     SpriteEffects.None,
@@ -188,14 +195,14 @@ namespace Velentr.Sprite.Core.DevEnv
             compositeAnimatedSprite2 = new CompositeSprite(
                 manager,
                 "a_car_2",
-                new Vector2(288, 192),
-                new SimpleSprite(manager, "hull", "car_hull", new Vector2(288, 192)),
+                hullSizeVector,
+                new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
                 new AnimatedSprite(
                     manager,
                     "tire1",
-                    new Vector2(42, 92),
+                    tire1Location,
                     Color.White,
-                    new Vector2(45, 45),
+                    tireSizeVector,
                     0f,
                     Vector2.Zero,
                     SpriteEffects.None,
@@ -205,9 +212,9 @@ namespace Velentr.Sprite.Core.DevEnv
                 new AnimatedSprite(
                     manager,
                     "tire1",
-                    new Vector2(213, 92),
+                    tire2Location,
                     Color.White,
-                    new Vector2(45, 45),
+                    tireSizeVector,
                     0f,
                     Vector2.Zero,
                     SpriteEffects.None,
@@ -379,6 +386,10 @@ namespace Velentr.Sprite.Core.DevEnv
                 lastMovingSpriteUpdate = gameTime.TotalGameTime;
                 ChangeState(currentState, last);
             }
+            else if (current.IsKeyDown(Keys.Up) && lastState.IsKeyUp(Keys.Up))
+            {
+                manager.AutoTextureAtlasBalancingEnabled = !manager.AutoTextureAtlasBalancingEnabled;
+            }
 
             lastState = current;
 
@@ -436,7 +447,6 @@ namespace Velentr.Sprite.Core.DevEnv
             {
                 case DevStates.TextureAtlasTesting1:
                     manager.DrawFullAtlas(_spriteBatch, 0, GraphicsDevice.Viewport.Bounds, Color.White);
-
                     break;
                 case DevStates.TextureAtlasTesting2:
                     _spriteBatch.Draw(manager, "image0", new Vector2(50, 50), Color.White);
@@ -473,7 +483,14 @@ namespace Velentr.Sprite.Core.DevEnv
                     break;
             }
 
-            _spriteBatch.DrawStringWithMarkdown(font, currentState.ToString(), new Vector2(0, Window.ClientBounds.Height - 40), Color.Black);
+            _spriteBatch.DrawString(font, currentState.ToString(), new Vector2(0, Window.ClientBounds.Height - 40), Color.Black);
+
+            _spriteBatch.DrawString(font2, $"Atlas Re-balancing enabled: {manager.AutoTextureAtlasBalancingEnabled}", new Vector2(525, Window.ClientBounds.Height - 60), Color.Black);
+            if (manager.AutoTextureAtlasBalancingEnabled)
+            {
+                _spriteBatch.DrawString(font2, $"Next Re-Balance: {Math.Round(manager.TimeInMillisecondsUntilLastReBalance / 1000f, 1)}s", new Vector2(525, Window.ClientBounds.Height - 40), Color.Black);
+                _spriteBatch.DrawString(font2, $"Atlas Count: {manager.AtlasCount}", new Vector2(525, Window.ClientBounds.Height - 20), Color.Black);
+            }
 
             _spriteBatch.End();
 
