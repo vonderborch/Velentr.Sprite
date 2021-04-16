@@ -171,6 +171,7 @@ compositeAnimatedSprite1.Draw(_spriteBatch);
 ```
 
 ![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/composite_animated_example.gif?raw=true)
+![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/composite_animated_example_2.gif?raw=true)
 
 
 # Future Plans

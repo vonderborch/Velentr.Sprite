@@ -131,7 +131,7 @@ namespace Velentr.Sprite.Core.DevEnv
             sprite2 = new SimpleSprite(manager, "static_car2", "static_car", hullSizeVector);
 
             // Composite Sprites
-            var tire1Location = new Vector2(45, 92);
+            var tire1Location = new Vector2(43, 92);
             var tire2Location = new Vector2(213, 92);
             compositeSprite1 = new CompositeSprite(
                 manager,
