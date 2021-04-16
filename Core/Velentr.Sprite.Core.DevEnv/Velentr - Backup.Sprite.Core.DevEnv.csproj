@@ -61,26 +61,8 @@
     <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_base.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_hull.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_3.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_4.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Content\PlayfairDisplayRegular-ywLOY.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Content\SpriteTesting\spr_sportscar_0.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Content\TextureAtlasTesting\11-6.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -106,5 +88,8 @@
     <None Update="Content\TextureAtlasTesting\Refd96265ac3da1f5b5dc5277f1082d15.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\SpriteTesting\" />
   </ItemGroup>
 </Project>

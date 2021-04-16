@@ -36,6 +36,7 @@ namespace Velentr.Sprite.Textures
 
             _textures = new Dictionary<string, Texture>();
             _occupied = new bool[width, height];
+
             Texture = new Texture2D(manager.GraphicsDevice, Width, Height, false, SurfaceFormat.Color);
             RemainingArea = width * height;
             TotalArea = width * height;

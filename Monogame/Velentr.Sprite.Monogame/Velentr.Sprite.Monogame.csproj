@@ -24,9 +24,16 @@
     <DefineConstants>TRACE;MONOGAME</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Animations\Animation.cs" Link="Animations\Animation.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Animations\Frame.cs" Link="Animations\Frame.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\CollectionHelpers.cs" Link="Helpers\CollectionHelpers.cs" />
     <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\MathHelpers.cs" Link="Helpers\MathHelpers.cs" />
     <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\TimeHelpers.cs" Link="Helpers\TimeHelpers.cs" />
     <Compile Include="..\..\Core\Velentr.Sprite.Core\SpriteManager.cs" Link="SpriteManager.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\AnimatedSprite.cs" Link="Sprites\AnimatedSprite.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\CompositeSprite.cs" Link="Sprites\CompositeSprite.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\SimpleSprite.cs" Link="Sprites\SimpleSprite.cs" />
+    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\Sprite.cs" Link="Sprites\Sprite.cs" />
     <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawAtlasExtensions.cs" Link="Textures\DrawAtlasExtensions.cs" />
     <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawManagerExtensions.cs" Link="Textures\DrawManagerExtensions.cs" />
     <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawTextureExtensions.cs" Link="Textures\DrawTextureExtensions.cs" />
@@ -39,9 +46,13 @@
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Velentr.Collections" Version="1.0.3" />
+    <PackageReference Include="Velentr.Font.Monogame" Version="1.1.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\" />
+    <Folder Include="Animations\" />
+    <Folder Include="Sprites\" />
     <Folder Include="Textures\" />
   </ItemGroup>
   <ItemGroup>

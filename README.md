@@ -7,19 +7,27 @@ There are nuget packages available for Monogame and FNA.
 - Monogame: [Velentr.Sprite.Monogame](https://www.nuget.org/packages/Velentr.Sprite.Monogame/)
 - FNA: [Velentr.Sprite.FNA](https://www.nuget.org/packages/Velentr.Sprite.FNA/)
 
+
 # Features
+- Sprite/Texture Management
 - Auto texture atlas creation: handle loading textures into texture atlases automatically
   - includes functionality to auto-rebalance texture atlases based on usage and size of textures
+- Sprite System
+  - Simple Sprites: simple image/texture with positioning information
+  - Animated Sprites: sprite using multiple sub-images to replicate an animation
+  - Composite Sprites: a combination of other sprite merged that are considered one entity
 
 # Usage
+A full example can be seen in the dev environment: https://github.com/vonderborch/Velentr.Sprite/blob/main/Core/Velentr.Sprite.Core.DevEnv/Game1.cs
+
 ### Texture Atlas
 ```
 
 // the manager should be declared as a class variable
-private TextureManager manager;
+private SpriteManager manager;
 
 // this code should go in your game's setup method (or equivalent)
-manager = new TextureManager(GraphicsDevice);
+manager = new SpriteManager(GraphicsDevice);
 var textures = new List<string>()
 {
     "11-6.jpg",
@@ -49,6 +57,15 @@ _spriteBatch.Draw(manager, "image0", new Vector2(50, 50), Color.White);
 ```
 
 ![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/Example.PNG?raw=true)
+
+### Sprites
+
+##### Simple Sprite
+
+##### Animated Sprite
+
+##### Composite Sprite
+
 
 # Future Plans
 See list of issues under the Milestones: https://github.com/vonderborch/Velentr.Sprite/milestones

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Velentr.Input.DevEnv
+namespace Velentr.Sprite.Core.DevEnv
 {
     public static class Program
     {

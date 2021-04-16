@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using Velentr.Collections.Collections;
 using Velentr.Sprite.Helpers;
 using Velentr.Sprite.Textures;
 using Texture = Velentr.Sprite.Textures.Texture;
@@ -26,7 +28,7 @@ namespace Velentr.Sprite
         public const SurfaceFormat DEFAULT_SURFACE_FORMAT = SurfaceFormat.Color;
 
         /// <summary>   The textures. </summary>
-        private Dictionary<string, Texture> _textures;
+        internal Dictionary<string, Texture> _textures;
 
         /// <summary>   The last texture balancing order. </summary>
         private List<string> _lastTextureBalancingOrder;
@@ -34,16 +36,20 @@ namespace Velentr.Sprite
         /// <summary>   The atlases. </summary>
         private List<TextureAtlas> _atlases;
 
+        public Bank<string, Sprites.Sprite> RegisteredSprites;
+
         /// <summary>   Constructor. </summary>
         ///
         /// <param name="graphicsDevice">                                   The graphics device. </param>
+        /// <param name="game">                                             (Optional) The game. If not set, balancing (if enabled) will be done on the main thread. </param>
         /// <param name="maxAtlasWidth">                                    (Optional) The width of the maximum atlas. Defaults to 2048 or 4096 depending on the GraphicsDevice.GraphicsProfile setting. </param>
         /// <param name="maxAtlasHeight">                                   (Optional) The height of the maximum atlas. Defaults to 2048 or 4096 depending on the GraphicsDevice.GraphicsProfile setting. </param>
         /// <param name="surfaceFormat">                                    (Optional) The surface format. Defaults to SurfaceFormat.Color.</param>
         /// <param name="autoTextureAtlasBalancingEnabled">                 (Optional) Whether texture atlas auto balancing is enabled. Defaults to false. </param>
         /// <param name="autoTextureAtlasBalancingIntervalMilliseconds">    (Optional) The time in milliseconds between texture auto-balancing attempts. Defaults to 300000 (five minutes). </param>
-        public SpriteManager(GraphicsDevice graphicsDevice, int? maxAtlasWidth = null, int? maxAtlasHeight = null, SurfaceFormat? surfaceFormat = null, bool autoTextureAtlasBalancingEnabled = false, uint autoTextureAtlasBalancingIntervalMilliseconds = 300000)
+        public SpriteManager(GraphicsDevice graphicsDevice, Game game = null, int? maxAtlasWidth = null, int? maxAtlasHeight = null, SurfaceFormat? surfaceFormat = null, bool autoTextureAtlasBalancingEnabled = false, uint autoTextureAtlasBalancingIntervalMilliseconds = 300000)
         {
+            Game = game;
             GraphicsDevice = graphicsDevice;
 
             MaxAtlasWidth = maxAtlasWidth ?? (GraphicsDevice.GraphicsProfile == GraphicsProfile.Reach ? DEFAULT_REACH_TEXTURE_SIZE : DEFAULT_HIDEF_TEXTURE_SIZE);
@@ -55,7 +61,17 @@ namespace Velentr.Sprite
 
             _lastTextureBalancingOrder = new List<string>();
             _lastBalancingTime = TimeSpan.Zero;
+            RegisteredSprites = new Bank<string, Sprites.Sprite>();
         }
+
+        /// <summary>
+        ///     Gets or sets the game.
+        /// </summary>
+        ///
+        /// <value>
+        ///     The game.
+        /// </value>
+        public Game Game { get; set; }
 
         /// <summary>   Gets or sets the graphics device. </summary>
         ///
@@ -327,10 +343,43 @@ namespace Velentr.Sprite
         /// <param name="gameTime"> The game time. </param>
         public void Update(GameTime gameTime)
         {
+            // re-balance texture atlases if required
             if (AutoTextureAtlasBalancingEnabled && TimeHelpers.ElapsedMilliSeconds(_lastBalancingTime, gameTime.TotalGameTime) > AutoTextureAtlasBalancingIntervalMilliseconds)
             {
                 BalanceTextureAtlases();
                 _lastBalancingTime = gameTime.TotalGameTime;
+            }
+
+            // update all of the registered sprites (if any)
+            foreach (var sprite in RegisteredSprites)
+            {
+                sprite.Value.Update(gameTime);
+            }
+        }
+
+        public void RegisterSpriteForUpdates(Sprites.Sprite sprite)
+        {
+            RegisteredSprites.AddItem(sprite.Name, sprite);
+        }
+
+        public void RegisterSpritesForUpdates(List<Sprites.Sprite> sprites)
+        {
+            for (var i = 0; i < sprites.Count; i++)
+            {
+                RegisteredSprites.AddItem(sprites[i].Name, sprites[i]);
+            }
+        }
+
+        public void UnregisterSpriteFromUpdates(string name)
+        {
+            RegisteredSprites.RemoveItem(name);
+        }
+
+        public void UnregisterSpritesFromUpdates(List<string> names)
+        {
+            for (var i = 0; i < names.Count; i++)
+            {
+                RegisteredSprites.RemoveItem(names[i]);
             }
         }
 
@@ -369,14 +418,22 @@ namespace Velentr.Sprite
 
             var oldAtlases = _atlases;
             var oldTextures = _textures;
-            _textures = new Dictionary<string, Texture>();
-            _atlases = newAtlases;
+            var newTextures = new Dictionary<string, Texture>();
             for (var i = 0; i < newAtlases.Count; i++)
             {
                 var atlasTextures = newAtlases[i].Textures;
                 foreach (var texture in atlasTextures)
                 {
-                    _textures.Add(texture.Key, texture.Value);
+                    newTextures.Add(texture.Key, texture.Value);
+                }
+            }
+
+            lock (_atlases)
+            {
+                lock (_textures)
+                {
+                    _textures = newTextures;
+                    _atlases = newAtlases;
                 }
             }
 

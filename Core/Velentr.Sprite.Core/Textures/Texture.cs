@@ -191,7 +191,7 @@ namespace Velentr.Sprite.Textures
         {
             return sourceRectangle == null
                 ? TextureBoundaries
-                : MathHelpers.RelativeRectangle((Rectangle)sourceRectangle, TextureBoundaries);
+                : MathHelpers.ScaleRectangle((Rectangle)sourceRectangle, TextureBoundaries);
         }
 
         /// <summary>
