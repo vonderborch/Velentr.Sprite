@@ -15,7 +15,7 @@ There are nuget packages available for Monogame and FNA.
 - Sprite System
   - Simple Sprites: simple image/texture with positioning information
   - Animated Sprites: sprite using multiple sub-images to replicate an animation
-  - Composite Sprites: a combination of other sprite merged that are considered one entity
+  - Composite Sprites: a combination of other sprite merged that are considered one entity (scene graph)
 
 # Usage
 A full example can be seen in the dev environment: https://github.com/vonderborch/Velentr.Sprite/blob/main/Core/Velentr.Sprite.Core.DevEnv/Game1.cs
@@ -59,12 +59,118 @@ _spriteBatch.Draw(manager, "image0", new Vector2(50, 50), Color.White);
 ![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/Example.PNG?raw=true)
 
 ### Sprites
+All sprites utilize the TextureManager system and require a texture manager to be enabled (and have the textures they require loaded)
 
 ##### Simple Sprite
+Simple image/texture with positioning information
+```
+var sprite = new SimpleSprite(manager, "SPRITE_NAME_HERE", "TEXTURE_NAME_HERE", new Vector2(size.X, size.Y));
+sprite.Draw(_spriteBatch);
+```
+![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/simple_sprite.PNG?raw=true)
 
 ##### Animated Sprite
+Sprite using multiple sub-images to replicate an animation
+```
+var frameTime = 75;
+var animatedSprite = new AnimatedSprite(
+    manager,
+    "walking_women",
+    new Vector2(animationSize.X, animationSize.Y),
+    new Animation(
+        "walking",
+        true,
+        new Frame[]
+        {
+            new Frame("f1", "woman1", frameTime),
+            new Frame("f2", "woman2", frameTime),
+            new Frame("f3", "woman3", frameTime),
+            new Frame("f4", "woman4", frameTime),
+            new Frame("f5", "woman5", frameTime),
+            new Frame("f6", "woman6", frameTime)
+        }
+    ),
+    new Animation(
+        "walking2",
+        true,
+        new Frame[]
+        {
+            new Frame("f1", "woman1", frameTime * 2),
+            new Frame("f2", "woman2", frameTime * 2),
+            new Frame("f3", "woman3", frameTime * 2),
+            new Frame("f4", "woman4", frameTime * 2),
+            new Frame("f5", "woman5", frameTime * 2),
+            new Frame("f6", "woman6", frameTime * 2)
+        }
+    )
+);
+animatedSprite.Update(gameTime);
+animatedSprite.Draw(_spriteBatch);
+```
+![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/animated_example.gif?raw=true)
 
 ##### Composite Sprite
+A combination of other sprite merged that are considered one entity (scene graph)
+
+Composite sprites can be made up of simple sprites...
+```
+var compositeSprite = new CompositeSprite(
+    manager,
+    "car_1",
+    hullSizeVector,
+    new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+    new SimpleSprite(manager, "tire1", "car_tire", tire1Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f),
+    new SimpleSprite(manager, "tire2", "car_tire", tire2Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f)
+);
+```
+Or a mixture of any sprite type (SimpleSprite, AnimatedSprite, or even other CompositeSprites)...
+```
+var tire_animation = new Animation(
+    "tire",
+    true,
+    new Frame[]
+    {
+        new Frame("t1", "car_tire", 100),
+        new Frame("t1", "car_tire2", 100),
+        new Frame("t1", "car_tire3", 100),
+        new Frame("t1", "car_tire4", 100)
+    }
+);
+var compositeAnimatedSprite1 = new CompositeSprite(
+    manager,
+    "a_car_1",
+    hullSizeVector,
+    new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+    new AnimatedSprite(
+        manager,
+        "tire1",
+        tire1Location,
+        Color.White,
+        tireSizeVector,
+        0f,
+        Vector2.Zero,
+        SpriteEffects.None,
+        0f,
+        new Animation(tire_animation)
+    ),
+    new AnimatedSprite(
+        manager,
+        "tire2",
+        tire2Location,
+        Color.White,
+        tireSizeVector,
+        0f,
+        Vector2.Zero,
+        SpriteEffects.None,
+        0f,
+        new Animation(tire_animation)
+    )
+);
+compositeAnimatedSprite1.Update(gameTime);
+compositeAnimatedSprite1.Draw(_spriteBatch);
+```
+
+![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/composite_animated_example.gif?raw=true)
 
 
 # Future Plans

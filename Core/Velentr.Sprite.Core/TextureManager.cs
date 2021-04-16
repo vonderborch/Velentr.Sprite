@@ -240,7 +240,6 @@ namespace Velentr.Sprite
             Point size;
             if (textureLoadInfo.TextureSize == null)
             {
-                // bmp, gif, jpg, png, tif, dds
 #if MONOGAME
                 texture = Texture2D.FromFile(GraphicsDevice, textureLoadInfo.Path);
 #elif FNA

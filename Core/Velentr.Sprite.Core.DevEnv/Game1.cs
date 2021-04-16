@@ -181,7 +181,7 @@ namespace Velentr.Sprite.Core.DevEnv
                 ),
                 new AnimatedSprite(
                     manager,
-                    "tire1",
+                    "tire2",
                     tire2Location,
                     Color.White,
                     tireSizeVector,
@@ -211,7 +211,7 @@ namespace Velentr.Sprite.Core.DevEnv
                 ),
                 new AnimatedSprite(
                     manager,
-                    "tire1",
+                    "tire2",
                     tire2Location,
                     Color.White,
                     tireSizeVector,
