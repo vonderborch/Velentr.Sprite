@@ -146,25 +146,15 @@ var compositeAnimatedSprite1 = new CompositeSprite(
         manager,
         "tire1",
         tire1Location,
-        Color.White,
         tireSizeVector,
-        0f,
-        Vector2.Zero,
-        SpriteEffects.None,
-        0f,
-        new Animation(tire_animation)
+        animations: new Animation(tire_animation)
     ),
     new AnimatedSprite(
         manager,
         "tire2",
         tire2Location,
-        Color.White,
         tireSizeVector,
-        0f,
-        Vector2.Zero,
-        SpriteEffects.None,
-        0f,
-        new Animation(tire_animation)
+        animations: new Animation(tire_animation)
     )
 );
 compositeAnimatedSprite1.Update(gameTime);
