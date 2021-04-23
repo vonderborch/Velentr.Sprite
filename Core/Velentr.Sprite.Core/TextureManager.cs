@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Velentr.Collections.Collections;
 using Velentr.Sprite.Helpers;
 using Velentr.Sprite.Textures;
@@ -36,7 +35,7 @@ namespace Velentr.Sprite
         /// <summary>   The atlases. </summary>
         private List<TextureAtlas> _atlases;
 
-        public Bank<string, Sprites.Sprite> RegisteredSprites;
+        public Bank<string, Sprites.Base.VelentrSprite> RegisteredSprites;
 
         /// <summary>   Constructor. </summary>
         ///
@@ -61,7 +60,10 @@ namespace Velentr.Sprite
 
             _lastTextureBalancingOrder = new List<string>();
             _lastBalancingTime = TimeSpan.Zero;
-            RegisteredSprites = new Bank<string, Sprites.Sprite>();
+            RegisteredSprites = new Bank<string, Sprites.Base.VelentrSprite>();
+
+            AutoTextureAtlasBalancingEnabled = autoTextureAtlasBalancingEnabled;
+            AutoTextureAtlasBalancingIntervalMilliseconds = autoTextureAtlasBalancingIntervalMilliseconds;
         }
 
         /// <summary>
@@ -140,7 +142,7 @@ namespace Velentr.Sprite
         ///
         /// <value> The surface format. </value>
         public SurfaceFormat SurfaceFormat { get; set; }
-        
+
         /// <summary>   Loads the textures. </summary>
         ///
         /// <param name="textureLoadInfo">  Information describing the texture load. </param>
@@ -359,16 +361,40 @@ namespace Velentr.Sprite
             }
         }
 
+        /// <summary>
+        ///     Gets or sets the time in milliseconds since last re balance.
+        /// </summary>
+        ///
+        /// <value>
+        ///     The time in milliseconds since last re balance.
+        /// </value>
         public uint TimeInMillisecondsSinceLastReBalance { get; private set; }
 
+        /// <summary>
+        ///     Gets the time in milliseconds until last re balance.
+        /// </summary>
+        ///
+        /// <value>
+        ///     The time in milliseconds until last re balance.
+        /// </value>
         public uint TimeInMillisecondsUntilLastReBalance => AutoTextureAtlasBalancingIntervalMilliseconds - TimeInMillisecondsSinceLastReBalance;
 
-        public void RegisterSpriteForUpdates(Sprites.Sprite sprite)
+        /// <summary>
+        ///     Registers the sprite for updates described by sprite.
+        /// </summary>
+        ///
+        /// <param name="sprite"> The sprite. </param>
+        public void RegisterSpriteForUpdates(Sprites.Base.VelentrSprite sprite)
         {
             RegisteredSprites.AddItem(sprite.Name, sprite);
         }
 
-        public void RegisterSpritesForUpdates(List<Sprites.Sprite> sprites)
+        /// <summary>
+        ///     Registers the sprites for updates described by sprites.
+        /// </summary>
+        ///
+        /// <param name="sprites"> The sprites. </param>
+        public void RegisterSpritesForUpdates(List<Sprites.Base.VelentrSprite> sprites)
         {
             for (var i = 0; i < sprites.Count; i++)
             {
@@ -376,11 +402,21 @@ namespace Velentr.Sprite
             }
         }
 
+        /// <summary>
+        ///     Unregisters the sprite from updates described by name.
+        /// </summary>
+        ///
+        /// <param name="name"> The name. </param>
         public void UnregisterSpriteFromUpdates(string name)
         {
             RegisteredSprites.RemoveItem(name);
         }
 
+        /// <summary>
+        ///     Unregisters the sprites from updates described by names.
+        /// </summary>
+        ///
+        /// <param name="names"> The names. </param>
         public void UnregisterSpritesFromUpdates(List<string> names)
         {
             for (var i = 0; i < names.Count; i++)
@@ -394,7 +430,7 @@ namespace Velentr.Sprite
         {
             // grab our textures and sort them by how often they've been used...
             var textures = _textures.Select(x => x.Value).ToList();
-            textures.Sort();
+            CollectionHelpers.QuickSortTextures(textures);
 
             // check if we can return early by having an identical usage order...
             var alreadyBalanced = false;

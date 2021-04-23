@@ -19,6 +19,11 @@ namespace Velentr.Sprite.Textures
             ForceOverride = forceOverride;
         }
 
+        /// <summary>   Gets a value indicating whether the override should be forced. </summary>
+        ///
+        /// <value> True if force override, false if not. </value>
+        public bool ForceOverride { get; }
+
         /// <summary>   Gets the name. </summary>
         ///
         /// <value> The name. </value>
@@ -33,10 +38,5 @@ namespace Velentr.Sprite.Textures
         ///
         /// <value> The size of the texture. </value>
         public Point? TextureSize { get; }
-
-        /// <summary>   Gets a value indicating whether the override should be forced. </summary>
-        ///
-        /// <value> True if force override, false if not. </value>
-        public bool ForceOverride { get; }
     }
 }

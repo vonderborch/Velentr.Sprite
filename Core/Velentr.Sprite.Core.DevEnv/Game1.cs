@@ -40,8 +40,8 @@ namespace Velentr.Sprite.Core.DevEnv
         private AnimatedSprite animatedSprite1;
         private AnimatedSprite animatedSprite2;
 
-        private SimpleSprite sprite1;
-        private SimpleSprite sprite2;
+        private Sprites.SimpleSprite sprite1;
+        private Sprites.SimpleSprite sprite2;
 
         private CompositeSprite compositeSprite1;
         private CompositeSprite compositeSprite2;
@@ -127,8 +127,8 @@ namespace Velentr.Sprite.Core.DevEnv
             //// create sprites
 
             // Simple Sprites
-            sprite1 = new SimpleSprite(manager, "static_car1", "static_car", hullSizeVector);
-            sprite2 = new SimpleSprite(manager, "static_car2", "static_car", hullSizeVector);
+            sprite1 = new Sprites.SimpleSprite(manager, "static_car1", "static_car", hullSizeVector);
+            sprite2 = new Sprites.SimpleSprite(manager, "static_car2", "static_car", hullSizeVector);
 
             // Composite Sprites
             var tire1Location = new Vector2(43, 92);
@@ -137,17 +137,17 @@ namespace Velentr.Sprite.Core.DevEnv
                 manager,
                 "car_1",
                 hullSizeVector,
-                new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
-                new SimpleSprite(manager, "tire1", "car_tire", tire1Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f),
-                new SimpleSprite(manager, "tire2", "car_tire", tire2Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f)
+                new Sprites.SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+                new SimpleSprite(manager, "tire1", "car_tire", tire1Location, tireSizeVector),
+                new SimpleSprite(manager, "tire2", "car_tire", tire2Location, tireSizeVector)
             );
             compositeSprite2 = new CompositeSprite(
                 manager,
                 "car_2",
                 hullSizeVector,
-                new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
-                new SimpleSprite(manager, "tire1", "car_tire", tire1Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f),
-                new SimpleSprite(manager, "tire2", "car_tire", tire2Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f)
+                new Sprites.SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+                new Sprites.Sprite(manager, "tire1", "car_tire", tire1Location, tireSizeVector),
+                new Sprites.Sprite(manager, "tire2", "car_tire", tire2Location, tireSizeVector)
             );
 
             // Composite AnimatedSprites
@@ -166,60 +166,40 @@ namespace Velentr.Sprite.Core.DevEnv
                 manager,
                 "a_car_1",
                 hullSizeVector,
-                new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+                new Sprites.SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
                 new AnimatedSprite(
                     manager,
                     "tire1",
                     tire1Location,
-                    Color.White,
                     tireSizeVector,
-                    0f,
-                    Vector2.Zero,
-                    SpriteEffects.None,
-                    0f,
-                    new Animation(tire_animation)
+                    animations: new Animation(tire_animation)
                 ),
                 new AnimatedSprite(
                     manager,
                     "tire2",
                     tire2Location,
-                    Color.White,
                     tireSizeVector,
-                    0f,
-                    Vector2.Zero,
-                    SpriteEffects.None,
-                    0f,
-                    new Animation(tire_animation)
+                    animations: new Animation(tire_animation)
                 )
             );
             compositeAnimatedSprite2 = new CompositeSprite(
                 manager,
                 "a_car_2",
                 hullSizeVector,
-                new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+                new Sprites.SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
                 new AnimatedSprite(
                     manager,
                     "tire1",
                     tire1Location,
-                    Color.White,
                     tireSizeVector,
-                    0f,
-                    Vector2.Zero,
-                    SpriteEffects.None,
-                    0f,
-                    new Animation(tire_animation)
+                    animations: new Animation(tire_animation)
                 ),
                 new AnimatedSprite(
                     manager,
                     "tire2",
                     tire2Location,
-                    Color.White,
                     tireSizeVector,
-                    0f,
-                    Vector2.Zero,
-                    SpriteEffects.None,
-                    0f,
-                    new Animation(tire_animation)
+                    animations: new Animation(tire_animation)
                 )
             );
 
@@ -229,13 +209,8 @@ namespace Velentr.Sprite.Core.DevEnv
                 manager,
                 "walking_women",
                 Vector2.Zero,
-                Color.White,
                 new Vector2(animationSize.X, animationSize.Y),
-                0f,
-                Vector2.Zero,
-                SpriteEffects.None,
-                0f,
-                new Animation(
+                animations: new Animation(
                     "walking",
                     true,
                     new Frame[]
@@ -253,13 +228,8 @@ namespace Velentr.Sprite.Core.DevEnv
                 manager,
                 "walking_women2",
                 Vector2.Zero,
-                Color.White,
                 new Vector2(animationSize.X, animationSize.Y),
-                0f,
-                Vector2.Zero,
-                SpriteEffects.None,
-                0f,
-                new Animation(
+                animations: new Animation(
                     "walking",
                     true,
                     new Frame[]

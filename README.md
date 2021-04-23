@@ -13,9 +13,10 @@ There are nuget packages available for Monogame and FNA.
 - Auto texture atlas creation: handle loading textures into texture atlases automatically
   - includes functionality to auto-rebalance texture atlases based on usage and size of textures (optional, disabled by default)
 - Sprite System
-  - Simple Sprites: simple image/texture with positioning information
-  - Animated Sprites: sprite using multiple sub-images to replicate an animation
-  - Composite Sprites: a combination of other sprite merged that are considered one entity (scene graph)
+  - Simple Sprites: simple image/texture with positioning information. Class: `SimpleSprite`
+  - Animated Sprites: sprite using multiple sub-images to replicate an animation. Class: `AnimatedSprite`
+  - Composite Sprites: a combination of other sprite merged that are considered one entity (scene graph). Class: `CompositeSprite`
+  - Omni Sprites: a sprite that internally creates one of the other sprite types and impersonates it. Class: `Sprite`
 
 # Usage
 A full example can be seen in the dev environment: https://github.com/vonderborch/Velentr.Sprite/blob/main/Core/Velentr.Sprite.Core.DevEnv/Game1.cs
@@ -118,12 +119,12 @@ var compositeSprite = new CompositeSprite(
     manager,
     "car_1",
     hullSizeVector,
-    new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
-    new SimpleSprite(manager, "tire1", "car_tire", tire1Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f),
-    new SimpleSprite(manager, "tire2", "car_tire", tire2Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f)
+    new Sprite(manager, "hull", "car_hull", hullSizeVector),
+    new Sprite(manager, "tire1", "car_tire", tire1Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f),
+    new Sprite(manager, "tire2", "car_tire", tire2Location, Color.White, tireSizeVector, 0f, Vector2.Zero, SpriteEffects.None, 0f)
 );
 ```
-Or a mixture of any sprite type (SimpleSprite, AnimatedSprite, or even other CompositeSprites)...
+Or a mixture of any sprite type (Simple Sprite, Animated Sprite, or even other Composite Sprites)...
 ```
 var tire_animation = new Animation(
     "tire",
@@ -140,7 +141,7 @@ var compositeAnimatedSprite1 = new CompositeSprite(
     manager,
     "a_car_1",
     hullSizeVector,
-    new SimpleSprite(manager, "hull", "car_hull", hullSizeVector),
+    new Sprite(manager, "hull", "car_hull", hullSizeVector),
     new AnimatedSprite(
         manager,
         "tire1",
@@ -172,6 +173,12 @@ compositeAnimatedSprite1.Draw(_spriteBatch);
 
 ![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/composite_animated_example.gif?raw=true)
 ![Screenshot](https://github.com/vonderborch/Velentr.Sprite/blob/main/composite_animated_example_2.gif?raw=true)
+
+##### Omni Sprites
+Omni sprites are initialized via the same techniques as the above, but rather than specifying a specific sub-sprite type, instead initialize as a `Sprite` but with the parameters for the sub-type you want.
+
+##### Extensibility
+Additional Sprite types can be created by extending the Sprites\Base\VelentrSprite.cs class.
 
 
 # Future Plans

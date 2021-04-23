@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -10,17 +10,17 @@ namespace Velentr.Sprite.Textures
     [DebuggerDisplay("{RemainingAreaPercent}% remaining / {UsedAreaPercent}% used / {TextureCount} textures")]
     public class TextureAtlas
     {
-        /// <summary>   The textures. </summary>
-        private Dictionary<string, Texture> _textures;
-
         /// <summary>   The texture. </summary>
         public Texture2D Texture;
 
-        /// <summary>   The occupied. </summary>
-        private bool[,] _occupied;
-
         /// <summary>   The buffer. </summary>
         private static Color[] _buffer;
+
+        /// <summary>   The occupied. </summary>
+        private readonly bool[,] _occupied;
+
+        /// <summary>   The textures. </summary>
+        private readonly Dictionary<string, Texture> _textures;
 
         /// <summary>   Constructor. </summary>
         ///
@@ -42,35 +42,40 @@ namespace Velentr.Sprite.Textures
             TotalArea = width * height;
         }
 
+        /// <summary>   Gets the height. </summary>
+        ///
+        /// <value> The height. </value>
+        public int Height => TextureAtlasBoundaries.Height;
+
         /// <summary>   Gets the manager. </summary>
         ///
         /// <value> The manager. </value>
         public TextureManager Manager { get; }
 
-        /// <summary>   Gets the texture atlas boundaries. </summary>
+        /// <summary>   Gets or sets the remaining area. </summary>
         ///
-        /// <value> The texture atlas boundaries. </value>
-        private Rectangle TextureAtlasBoundaries { get; }
+        /// <value> The remaining area. </value>
+        public long RemainingArea { get; private set; }
 
-        /// <summary>   Gets the width. </summary>
+        /// <summary>   Gets the remaining area percent. </summary>
         ///
-        /// <value> The width. </value>
-        public int Width => TextureAtlasBoundaries.Width;
-
-        /// <summary>   Gets the height. </summary>
-        ///
-        /// <value> The height. </value>
-        public int Height => TextureAtlasBoundaries.Height;
+        /// <value> The remaining area percent. </value>
+        public double RemainingAreaPercent => Math.Round(RemainingArea / (double)TotalArea * 100, 2);
 
         /// <summary>   Gets the surface format. </summary>
         ///
         /// <value> The surface format. </value>
         public SurfaceFormat SurfaceFormat { get; }
 
-        /// <summary>   Gets or sets the remaining area. </summary>
+        /// <summary>   Gets the number of textures. </summary>
         ///
-        /// <value> The remaining area. </value>
-        public long RemainingArea { get; private set; }
+        /// <value> The number of textures. </value>
+        public int TextureCount => _textures.Count;
+
+        /// <summary>   Gets the textures. </summary>
+        ///
+        /// <value> The textures. </value>
+        public Dictionary<string, Texture> Textures => _textures;
 
         /// <summary>   Gets the total number of area. </summary>
         ///
@@ -82,25 +87,20 @@ namespace Velentr.Sprite.Textures
         /// <value> The used area. </value>
         public long UsedArea => TotalArea - RemainingArea;
 
-        /// <summary>   Gets the remaining area percent. </summary>
-        ///
-        /// <value> The remaining area percent. </value>
-        public double RemainingAreaPercent => Math.Round(RemainingArea / (double)TotalArea * 100, 2);
-
         /// <summary>   Gets the used area percent. </summary>
         ///
         /// <value> The used area percent. </value>
         public double UsedAreaPercent => Math.Round(UsedArea / (double)TotalArea * 100, 2);
 
-        /// <summary>   Gets the number of textures. </summary>
+        /// <summary>   Gets the width. </summary>
         ///
-        /// <value> The number of textures. </value>
-        public int TextureCount => _textures.Count;
+        /// <value> The width. </value>
+        public int Width => TextureAtlasBoundaries.Width;
 
-        /// <summary>   Gets the textures. </summary>
+        /// <summary>   Gets the texture atlas boundaries. </summary>
         ///
-        /// <value> The textures. </value>
-        public Dictionary<string, Texture> Textures => _textures;
+        /// <value> The texture atlas boundaries. </value>
+        private Rectangle TextureAtlasBoundaries { get; }
 
         /// <summary>   Adds a texture to atlas. </summary>
         ///
@@ -140,81 +140,6 @@ namespace Velentr.Sprite.Textures
             // return back that we failed!
             info = null;
             return false;
-        }
-
-        /// <summary>   Determine if a rectangle can be placed on this Atlas. </summary>
-        ///
-        /// <param name="boundaries">       The boundaries. </param>
-        /// <param name="outBoundaries">    [out] The out boundaries. </param>
-        ///
-        /// <returns>   True if we can be placed, false if not. </returns>
-        private bool CanBePlaced(Rectangle boundaries, out Rectangle outBoundaries)
-        {
-            outBoundaries = Rectangle.Empty;
-            // return early if our atlas bounds are too small for the texture, or the atlas is full
-            if (boundaries.Width > TextureAtlasBoundaries.Width || boundaries.Height > TextureAtlasBoundaries.Height)
-            {
-                return false;
-            }
-
-            var trial = boundaries;
-            for (var y = 0; y < Height - boundaries.Height; y++)
-            {
-                for (var x = 0; x < Width - boundaries.Width; x++)
-                {
-                    trial.X = x;
-                    trial.Y = y;
-
-                    // if none of the four corners of our current area are occupied, we may have a valid area for our rectangle
-                    if (
-                        !_occupied[trial.Left, trial.Top]
-                        && !_occupied[trial.Left, trial.Bottom]
-                        && !_occupied[trial.Right, trial.Top]
-                        && !_occupied[trial.Right, trial.Bottom]
-                    )
-                    {
-                        // if we intersect any textures that have already been placed, we've got an invalid location and should move on to the next location...
-                        var valid = true;
-                        var rect = new Rectangle(x, y, boundaries.Width, boundaries.Height);
-                        foreach (var texture in _textures)
-                        {
-                            if (rect.Intersects(texture.Value.TextureBoundaries))
-                            {
-                                valid = false;
-                                break;
-                            }
-                        }
-
-                        if (valid)
-                        {
-                            outBoundaries = trial;
-                            return true;
-                        }
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        /// <summary>   Query if we have slot for a texture. </summary>
-        ///
-        /// <param name="textureBoundaries">    The texture boundaries. </param>
-        ///
-        /// <returns>   True if slot for texture, false if not. </returns>
-        public bool HasSlotForTexture(Rectangle textureBoundaries)
-        {
-            return CanBePlaced(textureBoundaries, out _);
-        }
-
-        /// <summary>   Query if we potentially have a slot for a texture. </summary>
-        ///
-        /// <param name="textureBoundaries">    The texture boundaries. </param>
-        ///
-        /// <returns>   True if potential slot for texture, false if not. </returns>
-        public bool HasPotentialSlotForTexture(Rectangle textureBoundaries)
-        {
-            return (textureBoundaries.Width * textureBoundaries.Height) <= RemainingArea;
         }
 
         /// <summary>   Submit a sprite for drawing in the current batch. </summary>
@@ -300,6 +225,81 @@ namespace Velentr.Sprite.Textures
         public void Draw(SpriteBatch spriteBatch, string texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth)
         {
             _textures[texture].Draw(spriteBatch, position, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
+        }
+
+        /// <summary>   Query if we potentially have a slot for a texture. </summary>
+        ///
+        /// <param name="textureBoundaries">    The texture boundaries. </param>
+        ///
+        /// <returns>   True if potential slot for texture, false if not. </returns>
+        public bool HasPotentialSlotForTexture(Rectangle textureBoundaries)
+        {
+            return (textureBoundaries.Width * textureBoundaries.Height) <= RemainingArea;
+        }
+
+        /// <summary>   Query if we have slot for a texture. </summary>
+        ///
+        /// <param name="textureBoundaries">    The texture boundaries. </param>
+        ///
+        /// <returns>   True if slot for texture, false if not. </returns>
+        public bool HasSlotForTexture(Rectangle textureBoundaries)
+        {
+            return CanBePlaced(textureBoundaries, out _);
+        }
+
+        /// <summary>   Determine if a rectangle can be placed on this Atlas. </summary>
+        ///
+        /// <param name="boundaries">       The boundaries. </param>
+        /// <param name="outBoundaries">    [out] The out boundaries. </param>
+        ///
+        /// <returns>   True if we can be placed, false if not. </returns>
+        private bool CanBePlaced(Rectangle boundaries, out Rectangle outBoundaries)
+        {
+            outBoundaries = Rectangle.Empty;
+            // return early if our atlas bounds are too small for the texture, or the atlas is full
+            if (boundaries.Width > TextureAtlasBoundaries.Width || boundaries.Height > TextureAtlasBoundaries.Height)
+            {
+                return false;
+            }
+
+            var trial = boundaries;
+            for (var y = 0; y < Height - boundaries.Height; y++)
+            {
+                for (var x = 0; x < Width - boundaries.Width; x++)
+                {
+                    trial.X = x;
+                    trial.Y = y;
+
+                    // if none of the four corners of our current area are occupied, we may have a valid area for our rectangle
+                    if (
+                        !_occupied[trial.Left, trial.Top]
+                        && !_occupied[trial.Left, trial.Bottom]
+                        && !_occupied[trial.Right, trial.Top]
+                        && !_occupied[trial.Right, trial.Bottom]
+                    )
+                    {
+                        // if we intersect any textures that have already been placed, we've got an invalid location and should move on to the next location...
+                        var valid = true;
+                        var rect = new Rectangle(x, y, boundaries.Width, boundaries.Height);
+                        foreach (var texture in _textures)
+                        {
+                            if (rect.Intersects(texture.Value.TextureBoundaries))
+                            {
+                                valid = false;
+                                break;
+                            }
+                        }
+
+                        if (valid)
+                        {
+                            outBoundaries = trial;
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

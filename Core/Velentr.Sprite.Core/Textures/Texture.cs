@@ -13,6 +13,9 @@ namespace Velentr.Sprite.Textures
     [DebuggerDisplay("Name: {Name} ({DrawsSinceLastBalancing})")]
     public class Texture : IComparable<Texture>
     {
+        /// <summary>   The draws since last balancing. </summary>
+        private long _drawsSinceLastBalancing;
+
         /// <summary>   Constructor. </summary>
         ///
         /// <param name="name">                 The name. </param>
@@ -30,6 +33,26 @@ namespace Velentr.Sprite.Textures
             _drawsSinceLastBalancing = 0;
         }
 
+        /// <summary>   Gets the area. </summary>
+        ///
+        /// <value> The area. </value>
+        public int Area => Width * Height;
+
+        /// <summary>   Gets the atlas. </summary>
+        ///
+        /// <value> The atlas. </value>
+        public TextureAtlas Atlas { get; }
+
+        /// <summary>   Gets the draws since last balancing. </summary>
+        ///
+        /// <value> The draws since last balancing. </value>
+        public long DrawsSinceLastBalancing => _drawsSinceLastBalancing;
+
+        /// <summary>   Gets the height. </summary>
+        ///
+        /// <value> The height. </value>
+        public int Height => TextureSize.Y;
+
         /// <summary>   Gets the name. </summary>
         ///
         /// <value> The name. </value>
@@ -40,18 +63,10 @@ namespace Velentr.Sprite.Textures
         /// <value> The full pathname of the file. </value>
         public string Path { get; }
 
-        /// <summary>   The draws since last balancing. </summary>
-        private long _drawsSinceLastBalancing;
-
-        /// <summary>   Gets the draws since last balancing. </summary>
+        /// <summary>   Gets the texture boundaries. </summary>
         ///
-        /// <value> The draws since last balancing. </value>
-        public long DrawsSinceLastBalancing => _drawsSinceLastBalancing;
-
-        /// <summary>   Gets the atlas. </summary>
-        ///
-        /// <value> The atlas. </value>
-        public TextureAtlas Atlas { get; }
+        /// <value> The texture boundaries. </value>
+        public Rectangle TextureBoundaries { get; }
 
         /// <summary>   Gets the texture size. </summary>
         ///
@@ -63,21 +78,6 @@ namespace Velentr.Sprite.Textures
         /// <value> The width. </value>
         public int Width => TextureSize.X;
 
-        /// <summary>   Gets the height. </summary>
-        ///
-        /// <value> The height. </value>
-        public int Height => TextureSize.Y;
-
-        /// <summary>   Gets the area. </summary>
-        ///
-        /// <value> The area. </value>
-        public int Area => Width * Height;
-
-        /// <summary>   Gets the texture boundaries. </summary>
-        ///
-        /// <value> The texture boundaries. </value>
-        public Rectangle TextureBoundaries { get; }
-
         /// <summary>   Implicit cast that converts the given Texture to a TextureLoadInfo. </summary>
         ///
         /// <param name="value">    The value. </param>
@@ -88,13 +88,46 @@ namespace Velentr.Sprite.Textures
             return new TextureLoadInfo(value.Name, value.Path, value.TextureSize, true);
         }
 
-        /// <summary>   Updates the draw count. </summary>
+        /// <summary>
+        /// Compares this Texture object to another to determine their relative ordering.
+        /// </summary>
         ///
-        /// <returns>   A long. </returns>
-        public long UpdateDrawCount()
+        /// <param name="other">    Another instance to compare. </param>
+        ///
+        /// <returns>
+        /// Negative if this object is less than the other, 0 if they are equal, or positive if this is
+        /// greater.
+        /// </returns>
+        public int CompareTo(Texture other)
         {
-            _drawsSinceLastBalancing += 1;
-            return _drawsSinceLastBalancing;
+            var comparisons = new List<(object, object, char)>()
+            {
+                (this.DrawsSinceLastBalancing, other.DrawsSinceLastBalancing, 'l'),
+                (this.Width, other.Width, 'i'),
+                (this.Height, other.Height, 'i'),
+            };
+
+            var c = 0;
+            for (var i = 0; i < comparisons.Count; i++)
+            {
+                switch (comparisons[i].Item3)
+                {
+                    case 'l':
+                        c = -((long)comparisons[i].Item1).CompareTo((long)comparisons[i].Item2);
+                        break;
+
+                    case 'i':
+                        c = -((int)comparisons[i].Item1).CompareTo((int)comparisons[i].Item2);
+                        break;
+                }
+
+                if (c != 0)
+                {
+                    return c;
+                }
+            }
+
+            return string.Compare(Name, other.Name, StringComparison.Ordinal);
         }
 
         /// <summary>   Submit a sprite for drawing in the current batch. </summary>
@@ -182,6 +215,15 @@ namespace Velentr.Sprite.Textures
             spriteBatch.Draw(Atlas.Texture, position, GetSourceRectangle(sourceRectangle), color, rotation, origin, scale, effects, layerDepth);
         }
 
+        /// <summary>   Updates the draw count. </summary>
+        ///
+        /// <returns>   A long. </returns>
+        public long UpdateDrawCount()
+        {
+            _drawsSinceLastBalancing += 1;
+            return _drawsSinceLastBalancing;
+        }
+
         /// <summary>   Gets source rectangle. </summary>
         ///
         /// <param name="sourceRectangle">  Source rectangle. </param>
@@ -192,47 +234,6 @@ namespace Velentr.Sprite.Textures
             return sourceRectangle == null
                 ? TextureBoundaries
                 : MathHelpers.ScaleRectangle((Rectangle)sourceRectangle, TextureBoundaries);
-        }
-
-        /// <summary>
-        /// Compares this Texture object to another to determine their relative ordering.
-        /// </summary>
-        ///
-        /// <param name="other">    Another instance to compare. </param>
-        ///
-        /// <returns>
-        /// Negative if this object is less than the other, 0 if they are equal, or positive if this is
-        /// greater.
-        /// </returns>
-        public int CompareTo(Texture other)
-        {
-            var comparisons = new List<(object, object, char)>()
-            {
-                (this.DrawsSinceLastBalancing, other.DrawsSinceLastBalancing, 'l'),
-                (this.Width, other.Width, 'i'),
-                (this.Height, other.Height, 'i'),
-            };
-
-            var c = 0;
-            for (var i = 0; i < comparisons.Count; i++)
-            {
-                switch (comparisons[i].Item3)
-                {
-                    case 'l':
-                        c = -((long)comparisons[i].Item1).CompareTo((long)comparisons[i].Item2);
-                        break;
-                    case 'i':
-                        c = -((int)comparisons[i].Item1).CompareTo((int)comparisons[i].Item2);
-                        break;
-                }
-
-                if (c != 0)
-                {
-                    return c;
-                }
-            }
-
-            return string.Compare(Name, other.Name, StringComparison.Ordinal);
         }
     }
 }
