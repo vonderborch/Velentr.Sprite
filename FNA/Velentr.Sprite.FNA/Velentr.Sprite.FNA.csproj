@@ -56,9 +56,6 @@
     <PackageReference Include="Velentr.Collections" Version="1.0.5" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FNA_Repo\FNA.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Animations\" />
     <Folder Include="Sprites\Base\" />
@@ -69,5 +66,8 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FNA_Repo\FNA.csproj" />
   </ItemGroup>
 </Project>
