@@ -13,6 +13,12 @@
     <RootNamespace>Velentr.Input.FNA.DevEnv</RootNamespace>
     <Version>1.0.0</Version>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;FNA</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE;FNA</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="Content\PlayfairDisplayRegular-ywLOY.ttf" />
     <None Remove="Content\Trueno-wml2.otf" />
@@ -40,11 +46,22 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="fnalibs" Version="21.3.5" />
+    <PackageReference Include="SharpFont.NetStandard" Version="1.0.5" />
+    <PackageReference Include="Velentr.Font.FNA" Version="1.1.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FNA_Repo\FNA.csproj" />
     <ProjectReference Include="..\Velentr.Sprite.FNA\Velentr.Sprite.FNA.csproj" />
   </ItemGroup>
+
+  <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'MonoGame.Framework.DesktopGL'">
+        <Aliases>fna</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
+
   <ItemGroup>
     <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
   </ItemGroup>
@@ -57,5 +74,88 @@
     <Content Update="C:\Users\ricky\.nuget\packages\fnalibs\21.3.5\build\..\lib\x86\SDL2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="C:\Users\ricky\.nuget\packages\velentr.font.fna\1.1.4\contentFiles\any\netstandard2.0\FAudio.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\ricky\.nuget\packages\velentr.font.fna\1.1.4\contentFiles\any\netstandard2.0\FNA3D.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\ricky\.nuget\packages\velentr.font.fna\1.1.4\contentFiles\any\netstandard2.0\libtheorafile.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="C:\Users\ricky\.nuget\packages\velentr.font.fna\1.1.4\contentFiles\any\netstandard2.0\SDL2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_base.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_hull.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\SpriteTesting\spr_sportscar_0.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\11-6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\beautiful-sunset-33.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\chloe4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\gorgeous-f2-goldendoodle-puppies-5a7de534c591b.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\OIP.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\R3d398e62bb9b79f54b5c49b4e5f32925.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\Rdb919eda1b98929d3a17685a6d3d7ef8.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\Refd96265ac3da1f5b5dc5277f1082d15.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

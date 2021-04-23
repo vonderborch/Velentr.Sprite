@@ -2,17 +2,21 @@
 
 namespace Velentr.Sprite.Helpers
 {
-
-    /// <summary>   Various time helpers. </summary>
+    /// <summary>
+    ///     Various time helpers.
+    /// </summary>
     public static class TimeHelpers
     {
-
-        /// <summary>   Determines the elapsed milliseconds between two timespans. </summary>
+        /// <summary>
+        ///     Elapsed milli seconds.
+        /// </summary>
         ///
-        /// <param name="startTime">    The start time. </param>
-        /// <param name="endTime">      The end time. </param>
+        /// <param name="startTime"> The start time. </param>
+        /// <param name="endTime">   The end time. </param>
         ///
-        /// <returns>   The elapsed milliseconds. </returns>
+        /// <returns>
+        ///     An uint.
+        /// </returns>
         public static uint ElapsedMilliSeconds(TimeSpan startTime, TimeSpan endTime)
         {
             return Convert.ToUInt32(Math.Abs((endTime - startTime).TotalMilliseconds));

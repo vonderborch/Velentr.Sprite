@@ -1,0 +1,95 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PublishReadyToRun>false</PublishReadyToRun>
+    <TieredCompilation>false</TieredCompilation>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="C:\Users\ricky\.nuget\packages\sharpfont.netstandard\1.0.2\contentFiles\any\netstandard2.0\lib\x64\freetype6.dll" />
+    <Content Remove="C:\Users\ricky\.nuget\packages\sharpfont.netstandard\1.0.2\contentFiles\any\netstandard2.0\lib\x86\freetype6.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Icon.ico" />
+    <None Remove="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico" />
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+    <PackageReference Include="SharpFont.NetStandard" Version="1.0.5" />
+    <PackageReference Include="Velentr.Font.Monogame" Version="1.1.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Velentr.Sprite.Core\Velentr.Sprite.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_1.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_3.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_5.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_base.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\PlayfairDisplayRegular-ywLOY.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\11-6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\beautiful-sunset-33.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\chloe4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\gorgeous-f2-goldendoodle-puppies-5a7de534c591b.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\OIP.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\R3d398e62bb9b79f54b5c49b4e5f32925.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\Rdb919eda1b98929d3a17685a6d3d7ef8.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\Refd96265ac3da1f5b5dc5277f1082d15.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\SpriteTesting\" />
+  </ItemGroup>
+</Project>

@@ -10,6 +10,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="C:\Users\ricky\.nuget\packages\sharpfont.netstandard\1.0.2\contentFiles\any\netstandard2.0\lib\x64\freetype6.dll" />
+    <Content Remove="C:\Users\ricky\.nuget\packages\sharpfont.netstandard\1.0.2\contentFiles\any\netstandard2.0\lib\x86\freetype6.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>
@@ -26,33 +30,80 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+    <PackageReference Include="SharpFont.NetStandard" Version="1.0.5" />
+    <PackageReference Include="Velentr.Font.Monogame" Version="1.1.5" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Velentr.Sprite.Core\Velentr.Sprite.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="Content\11-6.jpg">
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\beautiful-sunset-33.jpg">
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\chloe4.jpg">
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_2.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\gorgeous-f2-goldendoodle-puppies-5a7de534c591b.jpg">
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_3.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\OIP.jpg">
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_4.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\R3d398e62bb9b79f54b5c49b4e5f32925.jpg">
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_5.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Rdb919eda1b98929d3a17685a6d3d7ef8.jpg">
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_6.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\Refd96265ac3da1f5b5dc5277f1082d15.jpg">
+    <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector_base.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_hull.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\CompositeSpriteTesting\spr_sportscar_0_tire_4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\PlayfairDisplayRegular-ywLOY.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\SpriteTesting\spr_sportscar_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\11-6.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\beautiful-sunset-33.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\chloe4.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\gorgeous-f2-goldendoodle-puppies-5a7de534c591b.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\OIP.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\R3d398e62bb9b79f54b5c49b4e5f32925.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\Rdb919eda1b98929d3a17685a6d3d7ef8.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Content\TextureAtlasTesting\Refd96265ac3da1f5b5dc5277f1082d15.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
