@@ -1,6 +1,8 @@
 ﻿using System;
+#if FNA
 using System.IO;
 using System.Runtime.InteropServices;
+#endif
 
 namespace Velentr.Sprite.Core.DevEnv
 {
