@@ -47,7 +47,7 @@
   <ItemGroup>
     <PackageReference Include="fnalibs" Version="21.3.5" />
     <PackageReference Include="SharpFont.NetStandard" Version="1.0.5" />
-    <PackageReference Include="Velentr.Font.FNA" Version="1.1.5" />
+    <PackageReference Include="Velentr.Font.FNA" Version="1.2.6" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FNA_Repo\FNA.csproj" />

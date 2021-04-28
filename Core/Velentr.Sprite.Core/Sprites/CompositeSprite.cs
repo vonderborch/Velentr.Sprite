@@ -15,10 +15,15 @@ namespace Velentr.Sprite.Sprites
     /// <seealso cref="Velentr.Sprite.Sprites.Base.VelentrSprite"/>
     public class CompositeSprite : Base.VelentrSprite
     {
+
         /// <summary>
         ///     The maximum cached calculations.
         /// </summary>
-        public uint MaxCachedCalculations = 5;
+        public long MaxCachedCalculations
+        {
+            get => _cachedCalculations.MaxSize;
+            set => _cachedCalculations.MaxSize = value;
+        }
 
         /// <summary>
         ///     Size of the base.
@@ -28,7 +33,7 @@ namespace Velentr.Sprite.Sprites
         /// <summary>
         ///     The cached calculations.
         /// </summary>
-        private Bank<(Point, float, Vector2, SpriteEffects), List<Rectangle>> _cachedCalculations;
+        private SizeLimitedOrderedDictionary<(Point, float, Vector2, SpriteEffects), List<Rectangle>> _cachedCalculations;
 
         /// <summary>
         ///     The last sprites.
@@ -58,6 +63,10 @@ namespace Velentr.Sprite.Sprites
             Sprites = sprites.ToList();
             _lastSprites = new List<string>();
             _baseSize = size;
+            _cachedCalculations = new SizeLimitedOrderedDictionary<(Point, float, Vector2, SpriteEffects), List<Rectangle>>
+            {
+                MaxSize = 5
+            };
         }
 
         /// <summary>
@@ -79,6 +88,10 @@ namespace Velentr.Sprite.Sprites
             Sprites = sprites.ToList();
             _lastSprites = new List<string>();
             _baseSize = size;
+            _cachedCalculations = new SizeLimitedOrderedDictionary<(Point, float, Vector2, SpriteEffects), List<Rectangle>>
+            {
+                MaxSize = 5
+            };
         }
 
         /// <summary>
@@ -138,17 +151,16 @@ namespace Velentr.Sprite.Sprites
 
             if (!CollectionHelpers.ListsEquivalent<string>(_lastSprites, GetCurrentSpriteNames()))
             {
-                _cachedCalculations = new Bank<(Point, float, Vector2, SpriteEffects), List<Rectangle>>();
+                var oldMaxSize = _cachedCalculations.MaxSize;
+                _cachedCalculations = new SizeLimitedOrderedDictionary<(Point, float, Vector2, SpriteEffects), List<Rectangle>>()
+                {
+                    MaxSize = oldMaxSize
+                };
                 CalculateSpriteScales();
             }
 
             if (!_cachedCalculations.Exists(key))
             {
-                if (_cachedCalculations.Count >= MaxCachedCalculations)
-                {
-                    _cachedCalculations.RemoveItem(0);
-                }
-
                 var calculations = new List<Rectangle>(Sprites.Count);
                 var overallScale = MathHelpers.GetRectangleScale(destinationRectangle, DestinationRectangle);
                 var flipAdjustment = Vector2.Zero;

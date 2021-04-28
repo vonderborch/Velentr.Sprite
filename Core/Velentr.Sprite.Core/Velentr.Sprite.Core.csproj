@@ -17,6 +17,6 @@
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Velentr.Collections" Version="1.0.5" />
+    <PackageReference Include="Velentr.Collections" Version="1.1.3" />
   </ItemGroup>
 </Project>

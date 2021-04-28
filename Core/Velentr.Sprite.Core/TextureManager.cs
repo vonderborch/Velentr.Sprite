@@ -35,7 +35,7 @@ namespace Velentr.Sprite
         /// <summary>   The atlases. </summary>
         private List<TextureAtlas> _atlases;
 
-        public Bank<string, Sprites.Base.VelentrSprite> RegisteredSprites;
+        public OrderedDictionary<string, Sprites.Base.VelentrSprite> RegisteredSprites;
 
         /// <summary>   Constructor. </summary>
         ///
@@ -60,7 +60,7 @@ namespace Velentr.Sprite
 
             _lastTextureBalancingOrder = new List<string>();
             _lastBalancingTime = TimeSpan.Zero;
-            RegisteredSprites = new Bank<string, Sprites.Base.VelentrSprite>();
+            RegisteredSprites = new OrderedDictionary<string, Sprites.Base.VelentrSprite>();
 
             AutoTextureAtlasBalancingEnabled = autoTextureAtlasBalancingEnabled;
             AutoTextureAtlasBalancingIntervalMilliseconds = autoTextureAtlasBalancingIntervalMilliseconds;

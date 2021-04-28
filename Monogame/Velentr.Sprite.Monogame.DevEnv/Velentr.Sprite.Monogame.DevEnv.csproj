@@ -40,8 +40,7 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-    <PackageReference Include="SharpFont.NetStandard" Version="1.0.5" />
-    <PackageReference Include="Velentr.Font.Monogame" Version="1.1.5" />
+    <PackageReference Include="Velentr.Font.Monogame" Version="1.2.6" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Velentr.Sprite.Monogame\Velentr.Sprite.Monogame.csproj" />
