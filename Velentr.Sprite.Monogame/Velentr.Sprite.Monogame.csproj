@@ -1,34 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Velentr.Sprite.Monogame</AssemblyName>
     <RootNamespace>Velentr.Sprite</RootNamespace>
-    <AssemblyName>Velentr.Sprite.FNA</AssemblyName>
-    <Platforms>AnyCPU;x64</Platforms>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Authors>Christian Webber</Authors>
     <Company>Christian Webber</Company>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <RepositoryUrl>https://github.com/vonderborch/Velentr.Sprite</RepositoryUrl>
-    <PackageTags>FNA, Textures, Texture Atlas, Atlas, Sprite</PackageTags>
+    <PackageTags>Monogame, Textures, Texture Atlas, Atlas, Sprite</PackageTags>
     <Description>A handy growing library of sprite/texture enhancements.</Description>
-    <Version>1.1.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.1.1</Version>
     <PackageProjectUrl>https://github.com/vonderborch/Velentr.Sprite</PackageProjectUrl>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageId>Velentr.Sprite.FNA</PackageId>
-    <Product>Velentr.Sprite.FNA</Product>
+    <PackageId>Velentr.Sprite.Monogame</PackageId>
+    <Product>Velentr.Sprite.Monogame</Product>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;FNA</DefineConstants>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DefineConstants>TRACE;MONOGAME</DefineConstants>
     <OutputPath></OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DefineConstants>TRACE;FNA</DefineConstants>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>TRACE;FNA</DefineConstants>
-    <OutputPath>..\..\release\FNA\</OutputPath>
+    <OutputPath>..\..\release\Monogame\</OutputPath>
+    <DefineConstants>TRACE;MONOGAME</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Core\Velentr.Sprite.Core\Animations\Animation.cs" Link="Animations\Animation.cs" />
@@ -51,8 +44,10 @@
     <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\TextureLoadInfo.cs" Link="Textures\TextureLoadInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="fnalibs" Version="21.3.5" />
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.23.4" />
+    <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Velentr.Collections" Version="1.1.3" />
   </ItemGroup>
   <ItemGroup>
@@ -66,8 +61,5 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\FNA_Repo\FNA.csproj" />
   </ItemGroup>
 </Project>
