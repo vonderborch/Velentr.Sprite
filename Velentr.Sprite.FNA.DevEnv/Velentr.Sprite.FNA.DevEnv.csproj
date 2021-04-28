@@ -26,8 +26,8 @@
     <None Remove="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Core\Velentr.Sprite.Core.DevEnv\Game1.cs" Link="Game1.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core.DevEnv\Program.cs" Link="Program.cs" />
+    <Compile Include="..\\Velentr.Sprite.DevEnv\Game1.cs" Link="Game1.cs" />
+    <Compile Include="..\\Velentr.Sprite.DevEnv\Program.cs" Link="Program.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PlayfairDisplayRegular-ywLOY.ttf">
@@ -50,7 +50,7 @@
     <PackageReference Include="Velentr.Font.FNA" Version="1.2.6" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FNA_Repo\FNA.csproj" />
+    <ProjectReference Include="..\FNA\FNA.csproj" />
     <ProjectReference Include="..\Velentr.Sprite.FNA\Velentr.Sprite.FNA.csproj" />
   </ItemGroup>
 

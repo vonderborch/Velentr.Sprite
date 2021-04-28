@@ -34,7 +34,7 @@
     <PackageReference Include="Velentr.Font.Monogame" Version="1.2.6" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Velentr.Sprite.Core\Velentr.Sprite.Core.csproj" />
+    <ProjectReference Include="..\Velentr.Sprite\Velentr.Sprite.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Content\AnimationTesting\woman-silhouette-walk-cycle-vector.jpg">

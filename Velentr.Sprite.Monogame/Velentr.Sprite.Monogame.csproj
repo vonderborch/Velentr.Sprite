@@ -20,28 +20,28 @@
     <OutputPath></OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\..\release\Monogame\</OutputPath>
+    <OutputPath>..\release\Monogame\</OutputPath>
     <DefineConstants>TRACE;MONOGAME</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Animations\Animation.cs" Link="Animations\Animation.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Animations\Frame.cs" Link="Animations\Frame.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\CollectionHelpers.cs" Link="Helpers\CollectionHelpers.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\MathHelpers.cs" Link="Helpers\MathHelpers.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Helpers\TimeHelpers.cs" Link="Helpers\TimeHelpers.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\AnimatedSprite.cs" Link="Sprites\AnimatedSprite.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\CompositeSprite.cs" Link="Sprites\CompositeSprite.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\Sprite.cs" Link="Sprites\Sprite.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\SpriteType.cs" Link="Sprites\SpriteType.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\SimpleSprite.cs" Link="Sprites\SimpleSprite.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Sprites\Base\VelentrSprite.cs" Link="Sprites\Base\VelentrSprite.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\TextureManager.cs" Link="TextureManager.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawAtlasExtensions.cs" Link="Textures\DrawAtlasExtensions.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawManagerExtensions.cs" Link="Textures\DrawManagerExtensions.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\DrawTextureExtensions.cs" Link="Textures\DrawTextureExtensions.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\Texture.cs" Link="Textures\Texture.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\TextureAtlas.cs" Link="Textures\TextureAtlas.cs" />
-    <Compile Include="..\..\Core\Velentr.Sprite.Core\Textures\TextureLoadInfo.cs" Link="Textures\TextureLoadInfo.cs" />
+    <Compile Include="..\Velentr.Sprite\Animations\Animation.cs" Link="Animations\Animation.cs" />
+    <Compile Include="..\Velentr.Sprite\Animations\Frame.cs" Link="Animations\Frame.cs" />
+    <Compile Include="..\Velentr.Sprite\Helpers\CollectionHelpers.cs" Link="Helpers\CollectionHelpers.cs" />
+    <Compile Include="..\Velentr.Sprite\Helpers\MathHelpers.cs" Link="Helpers\MathHelpers.cs" />
+    <Compile Include="..\Velentr.Sprite\Helpers\TimeHelpers.cs" Link="Helpers\TimeHelpers.cs" />
+    <Compile Include="..\Velentr.Sprite\Sprites\AnimatedSprite.cs" Link="Sprites\AnimatedSprite.cs" />
+    <Compile Include="..\Velentr.Sprite\Sprites\CompositeSprite.cs" Link="Sprites\CompositeSprite.cs" />
+    <Compile Include="..\Velentr.Sprite\Sprites\Sprite.cs" Link="Sprites\Sprite.cs" />
+    <Compile Include="..\Velentr.Sprite\Sprites\SpriteType.cs" Link="Sprites\SpriteType.cs" />
+    <Compile Include="..\Velentr.Sprite\Sprites\SimpleSprite.cs" Link="Sprites\SimpleSprite.cs" />
+    <Compile Include="..\Velentr.Sprite\Sprites\Base\VelentrSprite.cs" Link="Sprites\Base\VelentrSprite.cs" />
+    <Compile Include="..\Velentr.Sprite\TextureManager.cs" Link="TextureManager.cs" />
+    <Compile Include="..\Velentr.Sprite\Textures\DrawAtlasExtensions.cs" Link="Textures\DrawAtlasExtensions.cs" />
+    <Compile Include="..\Velentr.Sprite\Textures\DrawManagerExtensions.cs" Link="Textures\DrawManagerExtensions.cs" />
+    <Compile Include="..\Velentr.Sprite\Textures\DrawTextureExtensions.cs" Link="Textures\DrawTextureExtensions.cs" />
+    <Compile Include="..\Velentr.Sprite\Textures\Texture.cs" Link="Textures\Texture.cs" />
+    <Compile Include="..\Velentr.Sprite\Textures\TextureAtlas.cs" Link="Textures\TextureAtlas.cs" />
+    <Compile Include="..\Velentr.Sprite\Textures\TextureLoadInfo.cs" Link="Textures\TextureLoadInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.23.4" />
@@ -57,7 +57,7 @@
     <Folder Include="Textures\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\LICENSE">
+    <None Include="..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
