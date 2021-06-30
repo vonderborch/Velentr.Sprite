@@ -17,10 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{326DB567-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monogame", "Monogame", "{A4E9461B-A3D7-4FAB-90F6-BBF418C95023}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Sprite", "Velentr.Sprite\Velentr.Sprite.csproj", "{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Sprite.DevEnv", "Velentr.Sprite.DevEnv\Velentr.Sprite.DevEnv.csproj", "{F8020B21-A503-4006-91A2-759440D76B00}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FNA.Core", "FNA\FNA.Core.csproj", "{0C591143-E16C-403C-8BD3-AA8920CD9597}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FNA", "FNA\FNA.csproj", "{35253CE1-C864-4CD3-8249-4D1319748E8F}"
@@ -33,7 +29,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Sprite.Monogame", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Velentr.Sprite.Monogame.DevEnv", "Velentr.Sprite.Monogame.DevEnv\Velentr.Sprite.Monogame.DevEnv.csproj", "{74871B97-86EF-4E25-8542-F7469F9F1BB1}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Velentr.Sprite", "Velentr.Sprite\Velentr.Sprite.shproj", "{3DD2CBB3-A6BF-4BBE-BCE5-74CDC720FEC3}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Velentr.Sprite.DevEnv", "Velentr.Sprite.DevEnv\Velentr.Sprite.DevEnv.shproj", "{8121C35F-D1ED-40A7-8C97-C77476F2D7C3}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Velentr.Sprite\Velentr.Sprite.projitems*{236c2abb-a122-40cd-b5a5-256ea80d14b1}*SharedItemsImports = 5
+		Velentr.Sprite\Velentr.Sprite.projitems*{3dd2cbb3-a6bf-4bbe-bce5-74cdc720fec3}*SharedItemsImports = 13
+		Velentr.Sprite\Velentr.Sprite.projitems*{677b465a-44a8-4e22-a50e-16dc8caf85d0}*SharedItemsImports = 5
+		Velentr.Sprite.DevEnv\Velentr.Sprite.DevEnv.projitems*{8121c35f-d1ed-40a7-8c97-c77476f2d7c3}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
@@ -43,30 +49,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Debug|x64.Build.0 = Debug|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Debug|x86.Build.0 = Debug|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Release|x64.ActiveCfg = Release|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Release|x64.Build.0 = Release|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Release|x86.ActiveCfg = Release|Any CPU
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8}.Release|x86.Build.0 = Release|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Debug|x64.Build.0 = Debug|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Debug|x86.Build.0 = Debug|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Release|x64.ActiveCfg = Release|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Release|x64.Build.0 = Release|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Release|x86.ActiveCfg = Release|Any CPU
-		{F8020B21-A503-4006-91A2-759440D76B00}.Release|x86.Build.0 = Release|Any CPU
 		{0C591143-E16C-403C-8BD3-AA8920CD9597}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{0C591143-E16C-403C-8BD3-AA8920CD9597}.Debug|x64.ActiveCfg = Debug|x64
 		{0C591143-E16C-403C-8BD3-AA8920CD9597}.Debug|x64.Build.0 = Debug|x64
@@ -140,14 +122,14 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{6C4DB74D-09B2-403E-84FF-1D16C4C891B8} = {326DB567-AA20-4D8F-A7FB-A70155D94279}
-		{F8020B21-A503-4006-91A2-759440D76B00} = {326DB567-AA20-4D8F-A7FB-A70155D94279}
 		{0C591143-E16C-403C-8BD3-AA8920CD9597} = {B121E245-3A56-43FC-9C38-92B097B0243F}
 		{35253CE1-C864-4CD3-8249-4D1319748E8F} = {B121E245-3A56-43FC-9C38-92B097B0243F}
 		{677B465A-44A8-4E22-A50E-16DC8CAF85D0} = {B121E245-3A56-43FC-9C38-92B097B0243F}
 		{470CCE11-799F-4B41-94E5-78C151081F5F} = {B121E245-3A56-43FC-9C38-92B097B0243F}
 		{236C2ABB-A122-40CD-B5A5-256EA80D14B1} = {A4E9461B-A3D7-4FAB-90F6-BBF418C95023}
 		{74871B97-86EF-4E25-8542-F7469F9F1BB1} = {A4E9461B-A3D7-4FAB-90F6-BBF418C95023}
+		{3DD2CBB3-A6BF-4BBE-BCE5-74CDC720FEC3} = {326DB567-AA20-4D8F-A7FB-A70155D94279}
+		{8121C35F-D1ED-40A7-8C97-C77476F2D7C3} = {326DB567-AA20-4D8F-A7FB-A70155D94279}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EF08031-0858-4824-88B8-11B63A46B77C}

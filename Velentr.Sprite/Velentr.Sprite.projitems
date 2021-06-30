@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>3dd2cbb3-a6bf-4bbe-bce5-74cdc720fec3</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Velentr.Sprite</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\Animation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Animations\Frame.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\CollectionHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MathHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\TimeHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\AnimatedSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\Base\VelentrSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\CompositeSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\SimpleSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\Sprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sprites\SpriteType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TextureManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Textures\DrawAtlasExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Textures\DrawManagerExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Textures\DrawTextureExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Textures\Texture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Textures\TextureAtlas.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Textures\TextureLoadInfo.cs" />
+  </ItemGroup>
+</Project>
